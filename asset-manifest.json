@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/cat_pinterest/static/js/main.ef32cad0.js",
+    "index.html": "/cat_pinterest/index.html",
+    "main.ef32cad0.js.map": "/cat_pinterest/static/js/main.ef32cad0.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ef32cad0.js"
+  ]
+}
