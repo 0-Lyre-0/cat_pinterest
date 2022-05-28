@@ -4,6 +4,8 @@ import {makeStyles} from "tss-react/mui";
 import {IconButton, Skeleton} from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import {useAppDispatch} from "../../hooks/hooks";
+import {toggleLikedCat} from "../../store/slices/catsSlice";
 
 interface Props {
   data: ICat
@@ -11,6 +13,7 @@ interface Props {
 }
 
 const CatCard: FC<Props> = ({data, isLiked = false}) => {
+  const dispatch = useAppDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isShown, setIsShown] = useState(false);
   const [isActiveLikedIcon, setIsActiveLikedIcon] = useState(isLiked);
@@ -19,6 +22,7 @@ const CatCard: FC<Props> = ({data, isLiked = false}) => {
   const onImgLoad = useCallback(() => setIsLoaded(true), [])
   const onMouseCardEnter = useCallback(() => setIsShown(true), [])
   const onMouseCardLeave = useCallback(() => setIsShown(false), [])
+  const onClickIconBtn = useCallback(() => dispatch(toggleLikedCat(data)), [data, dispatch])
 
   const onMouseIconEnter = useCallback(() => {
     if (isLiked) return;
@@ -43,6 +47,7 @@ const CatCard: FC<Props> = ({data, isLiked = false}) => {
                   color={"default"}
                   onMouseEnter={onMouseIconEnter}
                   onMouseLeave={onMouseIconLeave}
+                  onClick={onClickIconBtn}
       >
         {isActiveLikedIcon ? (
           <FavoriteIcon/>

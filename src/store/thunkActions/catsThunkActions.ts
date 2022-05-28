@@ -5,7 +5,7 @@ import {CATS_IMG_URL} from "../../constants/apiUrls";
 export const fetchCats = createAsyncThunk(
   'cats/fetchCats',
   async () => {
-    const response = await axiosApi.get(CATS_IMG_URL + "?limit=10")
+    const response = await axiosApi.get(CATS_IMG_URL + "?limit=30")
     return response.data
   }
 )
