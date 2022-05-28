@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/cats/static/js/main.75097940.js",
-    "index.html": "/cats/index.html",
-    "main.75097940.js.map": "/cats/static/js/main.75097940.js.map"
+    "main.js": "/cat_pinterest/static/js/main.aec9a9a4.js",
+    "index.html": "/cat_pinterest/index.html",
+    "main.aec9a9a4.js.map": "/cat_pinterest/static/js/main.aec9a9a4.js.map"
   },
   "entrypoints": [
-    "static/js/main.75097940.js"
+    "static/js/main.aec9a9a4.js"
   ]
 }
