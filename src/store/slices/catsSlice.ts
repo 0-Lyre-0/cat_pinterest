@@ -1,30 +1,39 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {fetchCats} from "../thunkActions/catsThunkActions";
+import {ICat} from "../../models/ICat";
 
 interface CatsState {
-  value: number
+  cats: ICat[]
+  fetchLoading: Boolean
 }
 
 const initialState: CatsState = {
-  value: 0,
+  cats: [],
+  fetchLoading: false,
 }
 
 const catsSlice = createSlice({
   name: 'cats',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
-    },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, { payload }: PayloadAction<number>) => {
-      state.value += payload
-    },
+    clearCatsArr : (state) => {
+      state.cats = []
+    }
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchCats.pending, (state) => {
+      state.fetchLoading = true
+    })
+    builder.addCase(fetchCats.fulfilled, (state, action: PayloadAction<ICat[]>) => {
+      state.fetchLoading = false
+      state.cats = action.payload
+    })
+    builder.addCase(fetchCats.rejected, (state) => {
+      state.fetchLoading = false
+    })
+  }
 })
 
-export const { increment, decrement, incrementByAmount } =
-  catsSlice.actions
+export const {clearCatsArr} = catsSlice.actions
 
 export default catsSlice
