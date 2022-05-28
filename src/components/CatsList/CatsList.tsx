@@ -17,13 +17,13 @@ const CatsList: FC<Props> = ({data, favCats, loading = false}) => {
       {data.length > 0 && (
         <Grid container my={2} justifyContent={"center"}>
           {data.map(cat => (
-            <Grid item key={cat.id} className={cx(c.item)}>
+            <Grid item key={cat.ui_id} className={cx(c.item)}>
               <CatCard data={cat} isLiked={Boolean(favCats.find(favCat => favCat.id === cat.id))}/>
             </Grid>
           ))}
         </Grid>
       )}
-      {loading && (<div>Loading...</div>)}
+      {loading && (<div className={cx(c.loading)}>Loading...</div>)}
     </>
   );
 };
@@ -39,6 +39,13 @@ const useStyles = makeStyles()(
         transition: "all 0.2s",
         transform: "scale(1.1)"
       },
+    },
+    loading: {
+      textAlign: 'center',
+      fontSize: 30,
+      fontStyle: "italic",
+      paddingBottom: 20,
+      paddingTop: 10
     }
   })
 );

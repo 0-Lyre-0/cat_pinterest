@@ -22,7 +22,7 @@ const catsSlice = createSlice({
     clearCatsArr: (state) => {
       state.cats = []
     },
-    restoreFavCat: (state) => {
+    restoreFavCats: (state) => {
       state.favCats = $LocalStorage.getFavCats();
     },
     toggleLikedCat: (state, action: PayloadAction<ICat>) => {
@@ -42,7 +42,7 @@ const catsSlice = createSlice({
     })
     builder.addCase(fetchCats.fulfilled, (state, action: PayloadAction<ICat[]>) => {
       state.fetchLoading = false
-      state.cats = action.payload
+      state.cats = [...state.cats, ...action.payload]
     })
     builder.addCase(fetchCats.rejected, (state) => {
       state.fetchLoading = false
@@ -50,6 +50,6 @@ const catsSlice = createSlice({
   }
 })
 
-export const {clearCatsArr, toggleLikedCat, restoreFavCat} = catsSlice.actions
+export const {clearCatsArr, toggleLikedCat, restoreFavCats} = catsSlice.actions
 
 export default catsSlice
